@@ -93,16 +93,4 @@ npm run lint
 3. Add tests for new logic or components
 4. Open a pull request with a clear description of changes
 
-## License
 
-This repository does not specify a license. Add a `LICENSE` file if you wish to make licensing explicit.
-
----
-
-If you'd like, I can also:
-
-- Add badges (build, tests) to the top of this README
-- Add a short architecture diagram or component map
-- Add contributor & development workflow details (pre-commit hooks, commit linting, CI)
-
-Tell me which of the above you'd like next.
