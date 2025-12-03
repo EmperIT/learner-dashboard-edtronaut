@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Learner Dashboard (Edtronaut)
 
-## Getting Started
+A small, component-driven learner dashboard built with Next.js, TypeScript and Tailwind CSS. The app demonstrates a compact dashboard surface showing a user's skills profile, recommended simulations, and progress widgets backed by mock data and a lightweight `zustand` store.
 
-First, run the development server:
+## Tech stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **State:** Zustand
+- **Charts / UI:** Recharts, Radix UI, React icons
+- **Testing:** Jest and React Testing Library
+
+## Features
+
+- Dashboard shell with user summary and KPI cards
+- Skill profile and weakest-skill-based recommendations
+- Simulation cards and a recommendation list component
+- Client state management using a small `zustand` store
+- Mock data under `src/data/` used for local development and tests
+
+## Quick start
+
+PowerShell / Windows commands shown below.
+
+Install dependencies:
+
+```powershell
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run the development server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```powershell
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open http://localhost:3000/dashboard in your browser (the dashboard lives under `/dashboard`).
 
-## Learn More
+Build for production:
 
-To learn more about Next.js, take a look at the following resources:
+```powershell
+npm run build
+npm run start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Run tests:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```powershell
+npm test
+# or run jest directly
+npx jest
+```
 
-## Deploy on Vercel
+Lint (ESLint):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```powershell
+npm run lint
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Scripts (from `package.json`)
+
+- `dev` — start Next.js dev server
+- `build` — build for production
+- `start` — run production server
+- `test` — run Jest tests
+- `lint` — run ESLint
+
+## Project structure (important files)
+
+- `src/app/dashboard` — Dashboard entry and `DashboardShell`
+- `src/components` — UI components (cards, badges, skeletons)
+- `src/modules` — feature modules (recommendations, simulations, skills)
+- `src/store/dashboardStore.ts` — `zustand` store used across the dashboard
+- `src/data/*.ts` — mock data used for development and tests
+- `tests/` — Jest unit tests for logic and components
+
+## Notes for developers
+
+- The app currently uses mock data (`src/data/mockUser.ts`, `mockSkills.ts`, `mockSimulations.ts`) and is wired to server-side rendering in `src/app/dashboard/page.tsx` which passes those mocks into `DashboardShell`.
+- Recommendations logic is implemented in `src/modules/recommendations/getRecommendations.ts` and rendered by `RecommendationList.tsx`. Tests for recommendation logic are in `tests/RecommendationList.test.ts`.
+- Global state is intentionally minimal (user, skills, simulations, selected skill). Use `useDashboardStore` from `src/store/dashboardStore.ts` to access or update state.
+
+## Testing
+
+- Unit tests use Jest with `ts-jest` and React Testing Library. Run `npm test` to execute tests.
+- Example: `tests/RecommendationList.test.ts` asserts recommendation filtering logic.
+
+## Contributing
+
+1. Fork the repo and create a feature branch: `git checkout -b feat/my-feature`
+2. Install dependencies and run the dev server locally
+3. Add tests for new logic or components
+4. Open a pull request with a clear description of changes
+
+## License
+
+This repository does not specify a license. Add a `LICENSE` file if you wish to make licensing explicit.
+
+---
+
+If you'd like, I can also:
+
+- Add badges (build, tests) to the top of this README
+- Add a short architecture diagram or component map
+- Add contributor & development workflow details (pre-commit hooks, commit linting, CI)
+
+Tell me which of the above you'd like next.
